@@ -12,7 +12,7 @@
     <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="3" DataKeyNames="ciu_cod" DataSourceID="SqlDataSource1" ForeColor="Black" GridLines="Vertical">
         <AlternatingRowStyle BackColor="#CCCCCC" />
         <Columns>
-            <asp:CommandField ShowEditButton="True" />
+            <asp:CommandField ShowEditButton="True" EditImageUrl="~/imagenes/iconos/editar.png" />
             <asp:BoundField DataField="ciu_cod" HeaderText="Codigo" ReadOnly="True" SortExpression="ciu_cod" />
             <asp:BoundField DataField="ciu_nom" HeaderText="Nombre" SortExpression="ciu_nom" />
             <asp:BoundField DataField="dept_nom" HeaderText="Departamento" SortExpression="dept_nom" />

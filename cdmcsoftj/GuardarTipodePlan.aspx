@@ -23,7 +23,7 @@
 
         <asp:Button ID="Button1" runat="server" Height="39px" Text="Guardar" Width="98px" OnClick="Button1_Click1" />
 
-    &nbsp; <a href="Default1.aspx">Atras</a><br />
+    &nbsp; <a href="Default.aspx">Atras</a><br />
         <br />
         <br />
         <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2" DataKeyNames="tipo_cod" DataSourceID="SqlDataSource1" ForeColor="Black" Width="227px">

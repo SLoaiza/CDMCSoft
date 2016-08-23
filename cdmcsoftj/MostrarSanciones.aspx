@@ -11,7 +11,7 @@
     <form id="form1" runat="server">
     <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2" DataKeyNames="sancion_cod" DataSourceID="SqlDataSource1" ForeColor="Black">
         <Columns>
-            <asp:CommandField ShowEditButton="True" />
+            <asp:CommandField ShowEditButton="True" EditImageUrl="~/imagenes/iconos/editar.png" />
             <asp:BoundField DataField="sancion_cod" HeaderText="sancion_cod" InsertVisible="False" ReadOnly="True" SortExpression="sancion_cod" />
             <asp:BoundField DataField="sancion_nom" HeaderText="sancion_nom" SortExpression="sancion_nom" />
             <asp:BoundField DataField="sancion_descp" HeaderText="sancion_descp" SortExpression="sancion_descp" />
