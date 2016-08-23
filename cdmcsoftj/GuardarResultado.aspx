@@ -22,7 +22,7 @@
             <textarea id="TextArea1" name="S1" runat="server"  required=""></textarea><br />
             <br />
             <asp:Button ID="Button1" runat="server" Height="40px" Text="Guardar" Width="131px" OnClick="Button1_Click" />
-        &nbsp; <a href="Default.aspx">Atras</a><br />
+        &nbsp; <a href="Default1.aspx">Atras</a><br />
             <a href="MostrarResultado.aspx">Mostrar Resultados</a>
         </div>
     </form>

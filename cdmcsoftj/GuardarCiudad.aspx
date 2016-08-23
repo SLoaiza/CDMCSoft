@@ -34,7 +34,7 @@
                 </UpdateParameters>
             </asp:SqlDataSource>
             <br />
-            <a href="Default.aspx">Atras</a>
+            <a href="Default1.aspx">Atras</a>
             <br />
             <asp:Button ID="Button1" runat="server" Height="40px" Text="Guardar" Width="131px" OnClick="Button1_Click" />
         &nbsp;&nbsp;&nbsp;&nbsp;

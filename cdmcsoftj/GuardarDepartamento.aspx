@@ -16,7 +16,7 @@
             <br />
             <br />
             <asp:Button ID="Button1" runat="server" Height="40px" Text="Guardar" Width="131px" OnClick="Button1_Click" />
-        &nbsp; <a href="Default.aspx">Atras</a></div>
+        &nbsp; <a href="Default1.aspx">Atras</a></div>
         <asp:GridView ID="GridView1" runat="server" AllowPaging="True" AllowSorting="True" AutoGenerateColumns="False" BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="3px" CellPadding="4" CellSpacing="2" DataKeyNames="dept_cod" DataSourceID="SqlDataSource1" ForeColor="Black">
             <Columns>
                 <asp:CommandField ShowEditButton="True" />
