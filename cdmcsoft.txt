@@ -1,0 +1,456 @@
+﻿use master;
+create database cdmcsoft;
+use cdmcsoft;
+CREATE TABLE [dbo].[ambiente](
+	[ambi_cod] [int] IDENTITY(1,1) NOT NULL,
+	[ambi_nro] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ambi_cod] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+CREATE TABLE [dbo].[causa](
+	[causa_cod] [int] IDENTITY(1,1) NOT NULL,
+	[causa_cual] [varchar](200) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[causa_cod] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+
+
+CREATE TABLE [dbo].[convencion](
+	[conven_cod] [int] IDENTITY(1,1) NOT NULL,
+	[conven_nombre] [varchar](50) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[conven_cod] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+CREATE TABLE [dbo].[empresa](
+	[emp_nit] [varchar](30) NOT NULL,
+	[emp_nombre] [varchar](80) NOT NULL,
+	[emp_direc] [varchar](30) NOT NULL,
+	[emp_tele] [varchar](15) NOT NULL,
+	[emp_email] [varchar](50) NOT NULL,
+	[emp_jefe_inme] [varchar](80) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[emp_nit] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+CREATE TABLE [dbo].[ficha](
+	[Ficha_cod] [varchar](20) NOT NULL,
+	[Prog_cod] [varchar](20) NULL,
+	[Horario] [varchar](20) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Ficha_cod] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+CREATE TABLE [dbo].[horario](
+	[hora_cod] [int] IDENTITY(1,1) NOT NULL,
+	[hora_rango_dias] [varchar](20) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[hora_cod] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+CREATE TABLE [dbo].[permiso](
+	[perm_cod] [int] IDENTITY(1,1) NOT NULL,
+	[perm_nom] [varchar](20) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[perm_cod] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+CREATE TABLE [dbo].[programa](
+	[prog_cod] [varchar](20) NOT NULL,
+	[prog_nom] [varchar](20) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[prog_cod] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+CREATE TABLE [dbo].[regional](
+	[regional_cod] [varchar](20) NOT NULL,
+	[regional_nombre] [varchar](200) NOT NULL,
+	[regional_nom_direct] [varchar](100) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[regional_cod] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+CREATE TABLE [dbo].[rol](
+	[rol_cod] [int] IDENTITY(1,1) NOT NULL,
+	[rol_nom] [varchar](20) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[rol_cod] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+create table tbl_departamento(dept_cod int identity not null primary key, dept_nom varchar(30) not null);
+create table tbl_sancion(sancion_cod int identity not null primary key, sancion_nom varchar(30) not null, sancion_descp varchar(500) not null);
+create table tbl_competencia(comp_cod int identity not null primary key, comp_descp varchar(500) not null)
+create table tbl_resultado(result_cod int identity not null primary key, result_descp varchar(500) not null);
+
+
+CREATE TABLE [dbo].[tipo_inventario](
+	[tipoinv_cod] [int] NOT NULL,
+	[tipoinv_desc] [varchar](300) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[tipoinv_cod] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+create table tbl_tipo_plan(
+tipo_cod int identity not null primary key, 
+tipo_nom varchar(30) not null);
+
+create table tbl_ciudad(
+ciu_cod int identity not null primary key, 
+ciu_nom varchar(30) not null,
+dept_cod int not null, 
+foreign key (dept_cod) references tbl_departamento (dept_cod));
+
+CREATE TABLE [dbo].[centro](
+	[centro_cod] [varchar](20) NOT NULL,
+	[regional_cod] [varchar](20) NOT NULL,
+	[centro_nombbre] [varchar](200) NOT NULL,
+	[centro_subdire] [varchar](100) NOT NULL,
+	[centro_complejo] [varchar](20) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[centro_cod] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+ALTER TABLE [dbo].[centro]  WITH CHECK ADD FOREIGN KEY([regional_cod])
+REFERENCES [dbo].[regional] ([regional_cod])
+GO
+
+CREATE TABLE [dbo].[institucion](
+	[inst_cod] [int] IDENTITY(1,1) NOT NULL,
+	[inst_nombre] [varchar](80) NOT NULL,
+	[cui_nom] [varchar](20) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[inst_cod] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+
+
+CREATE TABLE [dbo].[permiso_x_rol](
+	[rol_cod] [int] NOT NULL,
+	[perm_cod] [int] NOT NULL,
+	[perm_rol_estado] [varchar](10) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[rol_cod] ASC,
+	[perm_cod] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+ALTER TABLE [dbo].[permiso_x_rol]  WITH CHECK ADD FOREIGN KEY([perm_cod])
+REFERENCES [dbo].[permiso] ([perm_cod])
+GO
+
+ALTER TABLE [dbo].[permiso_x_rol]  WITH CHECK ADD FOREIGN KEY([rol_cod])
+REFERENCES [dbo].[rol] ([rol_cod])
+GO
+
+
+create table tbl_compt_x_result(comp_cod int not null, result_cod int not null,
+primary key (comp_cod,result_cod),
+foreign key (comp_cod) references tbl_competencia (comp_cod),
+foreign key (result_cod) references tbl_resultado (result_cod));
+
+
+CREATE TABLE [dbo].[usuario](
+	[usu_cod] [varchar](20) NOT NULL,
+	[ficha_cod] [varchar](20) NOT NULL,
+	[ciu_cod] [varchar](10) NOT NULL,
+	[rol_cod] [int] NULL,
+	[usu_nom] [varchar](80) NOT NULL,
+	[usu_ape] [varchar](80) NOT NULL,
+	[usu_direc] [varchar](100) NOT NULL,
+	[usu_tel] [varchar](20) NOT NULL,
+	[usu_Estado] [varchar](10) NOT NULL,
+	[regional_cod] [varchar](20) NOT NULL,
+	[centro_cod] [varchar](20) NOT NULL,
+	[usu_tipo_id] [varchar](20) NOT NULL,
+	[usu_fecha_naci] [varchar](20) NOT NULL,
+	[usu_id] [varchar](20) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[usu_cod] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+ALTER TABLE [dbo].[usuario]  WITH CHECK ADD FOREIGN KEY([centro_cod])
+REFERENCES [dbo].[centro] ([centro_cod])
+GO
+
+ALTER TABLE [dbo].[usuario]  WITH CHECK ADD FOREIGN KEY([ciu_cod])
+REFERENCES [dbo].[tbl_ciudad] ([ciu_cod])
+GO
+
+ALTER TABLE [dbo].[usuario]  WITH CHECK ADD FOREIGN KEY([ficha_cod])
+REFERENCES [dbo].[ficha] ([Ficha_cod])
+GO
+
+ALTER TABLE [dbo].[usuario]  WITH CHECK ADD FOREIGN KEY([rol_cod])
+REFERENCES [dbo].[rol] ([rol_cod])
+GO
+
+CREATE TABLE [dbo].[egresado](
+	[egre_cod] [int] IDENTITY(1,1) NOT NULL,
+	[usu_cod] [varchar](20) NOT NULL,
+	[egre_alt_etapa_prod] [varchar](50) NOT NULL,
+	[egre_otra_cual_etapa_prod] [varchar](50) NOT NULL,
+	[egre_vinc_fin_etapa_prac] [char](2) NOT NULL,
+	[egre_vinc_act] [char](2) NOT NULL,
+	[emp_nit] [varchar](30) NOT NULL,
+	[egre_cargo] [varchar](80) NOT NULL,
+	[egre_fech_vinc] [char](10) NOT NULL,
+	[egre_perti_func] [char](2) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[egre_cod] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+ALTER TABLE [dbo].[egresado]  WITH CHECK ADD FOREIGN KEY([usu_cod])
+REFERENCES [dbo].[usuario] ([usu_cod])
+GO
+
+CREATE TABLE [dbo].[estudio](
+	[est_cod] [int] IDENTITY(1,1) NOT NULL,
+	[est_nombre] [varchar](80) NOT NULL,
+	[est_graduado] [char](2) NOT NULL,
+	[est_ano] [char](4) NOT NULL,
+	[est_observ] [varchar](200) NOT NULL,
+	[est_niv_form] [varchar](50) NOT NULL,
+	[egre_cod] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[est_cod] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+ALTER TABLE [dbo].[estudio]  WITH CHECK ADD FOREIGN KEY([egre_cod])
+REFERENCES [dbo].[egresado] ([egre_cod])
+GO
+
+CREATE TABLE [dbo].[certificacion](
+	[certi_cod] [int] IDENTITY(1,1) NOT NULL,
+	[usu_cod] [varchar](20) NOT NULL,
+	[inst_cod] [int] NOT NULL,
+	[certi_compro] [char](2) NOT NULL,
+	[certi_lugar] [varchar](50) NOT NULL,
+	[certi_fech_entreg] [varchar](10) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[certi_cod] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+ALTER TABLE [dbo].[certificacion]  WITH CHECK ADD FOREIGN KEY([inst_cod])
+REFERENCES [dbo].[institucion] ([inst_cod])
+GO
+ALTER TABLE [dbo].[certificacion]  WITH CHECK ADD FOREIGN KEY([usu_cod])
+REFERENCES [dbo].[usuario] ([usu_cod])
+GO
+
+
+CREATE TABLE [dbo].[desercion](
+	[deser_cod] [int] IDENTITY(1,1) NOT NULL,
+	[usu_cod] [varchar](20) NOT NULL,
+	[deser_dia_ini_forma] [char](2) NOT NULL,
+	[deser_mes_ini_forma] [char](2) NOT NULL,
+	[deser_ano_ini_forma] [char](4) NOT NULL,
+	[derser_dia] [char](2) NOT NULL,
+	[deser_mes] [char](2) NOT NULL,
+	[deser_ano] [char](4) NOT NULL,
+	[deser_observa] [varchar](500) NOT NULL,
+	[causa_cod] [int] NOT NULL,
+	[hora_cod] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[deser_cod] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+ALTER TABLE [dbo].[desercion]  WITH CHECK ADD FOREIGN KEY([causa_cod])
+REFERENCES [dbo].[causa] ([causa_cod])
+GO
+
+ALTER TABLE [dbo].[desercion]  WITH CHECK ADD FOREIGN KEY([hora_cod])
+REFERENCES [dbo].[horario] ([hora_cod])
+GO
+
+ALTER TABLE [dbo].[desercion]  WITH CHECK ADD FOREIGN KEY([usu_cod])
+REFERENCES [dbo].[usuario] ([usu_cod])
+GO
+
+CREATE TABLE [dbo].[inasistencia](
+	[inasis_cod] [int] IDENTITY(1,1) NOT NULL,
+	[usu_cod] [varchar](20) NOT NULL,
+	[inasis_num_horas] [int] NOT NULL,
+	[inasis_fecha] [varchar](10) NOT NULL,
+	[inasis_descrip] [varchar](200) NOT NULL,
+	[usu_cod_aux] [varchar](20) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[inasis_cod] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+ALTER TABLE [dbo].[inasistencia]  WITH CHECK ADD FOREIGN KEY([usu_cod])
+REFERENCES [dbo].[usuario] ([usu_cod])
+GO
+
+CREATE TABLE [dbo].[inasis_x_convencion](
+	[conven_cod] [int] NOT NULL,
+	[inasis_cod] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[conven_cod] ASC,
+	[inasis_cod] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+ALTER TABLE [dbo].[inasis_x_convencion]  WITH CHECK ADD FOREIGN KEY([conven_cod])
+REFERENCES [dbo].[convencion] ([conven_cod])
+GO
+
+ALTER TABLE [dbo].[inasis_x_convencion]  WITH CHECK ADD FOREIGN KEY([inasis_cod])
+REFERENCES [dbo].[inasistencia] ([inasis_cod])
+GO
+
+CREATE TABLE [dbo].[inventario](
+	[inv_cod] [int] NOT NULL,
+	[usu_cod] [varchar](20) NOT NULL,
+	[ambi_cod] [int] NOT NULL,
+	[tipoinv_cod] [int] NOT NULL,
+	[inv_desc] [varchar](150) NOT NULL,
+	[inv_obser] [varchar](300) NOT NULL,
+	[inv_modelo] [varchar](20) NOT NULL,
+	[inv_marca] [varchar](30) NOT NULL,
+	[inv_serial] [varchar](20) NOT NULL,
+	[inv_vlrunit] [varchar](20) NOT NULL,
+	[inv_nromesa] [int] NOT NULL,
+	[inv_nroequi] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[inv_cod] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+ALTER TABLE [dbo].[inventario]  WITH CHECK ADD FOREIGN KEY([ambi_cod])
+REFERENCES [dbo].[ambiente] ([ambi_cod])
+GO
+
+
+ALTER TABLE [dbo].[inventario]  WITH CHECK ADD FOREIGN KEY([tipoinv_cod])
+REFERENCES [dbo].[tipo_inventario] ([tipoinv_cod])
+GO
+
+ALTER TABLE [dbo].[inventario]  WITH CHECK ADD FOREIGN KEY([usu_cod])
+REFERENCES [dbo].[usuario] ([usu_cod])
+GO
+
+CREATE TABLE [dbo].[incidencia](
+	[inci_cod] [int] NOT NULL,
+	[inv_cod] [int] NOT NULL,
+	[inci_desc] [varchar](300) NOT NULL,
+	[inci_fecha] [varchar](10) NOT NULL,
+	[inci_hora] [varchar](10) NOT NULL,
+	[usu_cod_aux] [varchar](20) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[inci_cod] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+ALTER TABLE [dbo].[incidencia]  WITH CHECK ADD FOREIGN KEY([inv_cod])
+REFERENCES [dbo].[inventario] ([inv_cod])
+GO
+
+
+
+create table tbl_plan_de_mejoramiento(
+plan_cod int identity not null primary key,
+usu_cod varchar(20) not null,
+tipo_cod varchar(10) not null,
+plan_num varchar(10) not null, 
+plan_fecha_creacion varchar(10) not null,
+plan_reg varchar(20) not null,
+plan_centro varchar(30) not null,
+plan_usu_prog_nom varchar(30) not null,
+plan_usu_prog_cod varchar(10) not null,
+plan_ficha_num varchar(10) not null,
+plan_etapa varchar(15) not null,
+plan_usu_nom varchar(40) not null,
+plan_usu_fase int not null,
+plan_usu_proy_nom varchar(30) not null,
+plan_usu_proy_cod int not null,
+plan_juicio varchar(20) not null,
+plan_act_des text(500) not null,
+plan_obser text(500) not null,
+plan_instructor_nom varchar(30) not null,
+plan_instructor_cod varchar(20) not null,
+foreign key(usu_cod)references usuario (usu_cod),
+foreign key(tipo_cod)references tbl_tipo_plan (tipo_cod));
+
+create table tbl_sancion_x_plan(
+sancion_cod int not null ,
+plan_cod int not null ,
+primary key (sancion_cod, plan_cod),
+foreign key (sancion_cod) references tbl_sancion(sancion_cod),
+foreign key (plan_cod) references tbl_plan_de_mejoramiento(plan_cod)
+);
+
+create table tbl_act_proy(act_proy_cod varchar(10) not null, 
+plan_cod int not null,
+act_proy_descp varchar(500) null, 
+act_proy_aprobado varchar(2),
+foreign key (plan_cod)references tbl_plan_de_mejoramiento(plan_cod));
+
+create table tbl_comite(com_cod varchar(10) not null primary key,
+plan_cod int not null, com_descp varchar(500) not null,
+com_conclusion varchar(300) not null,
+foreign key (plan_cod)references tbl_plan_de_mejoramiento(plan_cod));
+
+create table tbl_resultado_x_plan(plan_cod int not null, 
+result_cod int not null,
+primary key (plan_cod,result_cod),
+foreign key (plan_cod)references tbl_plan_de_mejoramiento(plan_cod),
+foreign key (result_cod)references tbl_resultado(result_cod));
+
+create table tbl_compromiso(compr_cod varchar(10) not null primary key,
+plan_cod int not null, compr_descp varchar(500)not null,
+compr_fecha varchar(10) not null,
+foreign key (plan_cod)references tbl_plan_de_mejoramiento(plan_cod));
+
+create table tbl_act_a_desarrollar(act_cod varchar(10) not null primary key,
+plan_cod int not null, act_inicio varchar(10) not null, 
+act_fin varchar(10) not null, act_centro_de_formacion varchar(50) not null,
+act_empresa varchar(50)not null, act_conocimiento char(1) not null,
+act_desempeño char(1) not null, act_producto char(1) not null,
+act_criterio_eval varchar(2) not null, act_fecha varchar(10) not null,
+act_hora varchar(12) not null, act_autenticidad varchar(2) not null,
+act_calidad varchar(2), act_logro varchar(2) not null,
+foreign key (plan_cod)references tbl_plan_de_mejoramiento(plan_cod));
