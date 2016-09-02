@@ -96,26 +96,28 @@ CREATE TABLE [dbo].[institucion](
 
 CREATE TABLE [dbo].[permiso_x_rol](
 	[rol_cod] [int] NOT NULL foreign key references rol(rol_cod),
-	[perm_cod] [int] NOT NULL foreign key references rol(perm_cod),
+	[perm_cod] [int] NOT NULL foreign key references permiso(perm_cod),
 	[perm_rol_estado] [varchar](10) NOT NULL,
 	primary key(rol_cod,perm_cod)
 )
 
+
 CREATE TABLE [dbo].[usuario](
 	[usu_cod] [varchar](20) NOT NULL,
 	[ficha_cod] [varchar](20) NOT NULL foreign key references ficha (Ficha_cod),
-	[ciu_cod] intNOT NULL foreign key references tbl_ciudad (ciu_cod),
+	[ciu_cod] [int] NOT NULL foreign key references tbl_ciudad (ciu_cod),
 	[rol_cod] [int] NULL foreign key references rol (rol_cod),
 	[usu_nom] [varchar](80) NOT NULL,
 	[usu_ape] [varchar](80) NOT NULL,
 	[usu_direc] [varchar](100) NOT NULL,
 	[usu_tel] [varchar](20) NOT NULL,
-	[usu_Estado] [varchar](10) NOT NULL,
+	[usu_estado] [varchar](10) NOT NULL,
 	[regional_cod] [varchar](20) NOT NULL,
 	[centro_cod] [varchar](20) NOT NULL foreign key references centro (centro_cod),
 	[usu_tipo_id] [varchar](20) NOT NULL,
 	[usu_fecha_naci] [varchar](20) NOT NULL,
-	[usu_id] [varchar](20) NOT NULL,
+	[usu_id] [varchar](50) NOT NULL,
+	[usu_pass] [varchar](50) NOT NULL,
 	PRIMARY KEY (usu_cod)
 )
 
@@ -210,7 +212,7 @@ CREATE TABLE [dbo].[incidencia](
 	[inci_fecha] [varchar](10) NOT NULL,
 	[inci_hora] [varchar](10) NOT NULL,
 	[usu_cod_aux] [varchar](20) NOT NULL,
-	PRIMARY KEY (inci_cod) 
+	PRIMARY KEY (inci_cod)
 )
 
 create table tbl_plan_de_mejoramiento(
@@ -230,8 +232,8 @@ plan_usu_fase int not null,
 plan_usu_proy_nom varchar(30) not null,
 plan_usu_proy_cod int not null,
 plan_juicio varchar(20) not null,
-plan_act_des text(500) not null,
-plan_obser text(500) not null,
+plan_act_des varchar(500) not null,
+plan_obser varchar(500) not null,
 plan_instructor_nom varchar(30) not null,
 plan_instructor_cod varchar(20) not null,
 foreign key(usu_cod)references usuario (usu_cod),
@@ -249,11 +251,6 @@ plan_cod int not null,
 result_descp varchar(500) not null,
 foreign key (plan_cod) references tbl_plan_de_mejoramiento (plan_cod));
 
-create table tbl_compt_x_result(comp_cod int not null, result_cod int not null,
-primary key (comp_cod,result_cod),
-foreign key (comp_cod) references tbl_competencia (comp_cod),
-foreign key (result_cod) references tbl_resultado (result_cod));
-
 create table tbl_sancion_x_plan(
 sancion_cod int not null ,
 plan_cod int not null ,
@@ -261,6 +258,11 @@ primary key (sancion_cod, plan_cod),
 foreign key (sancion_cod) references tbl_sancion(sancion_cod),
 foreign key (plan_cod) references tbl_plan_de_mejoramiento(plan_cod)
 );
+
+create table tbl_compt_x_result(comp_cod int not null, result_cod int not null,
+primary key (comp_cod,result_cod),
+foreign key (comp_cod) references tbl_competencia (comp_cod),
+foreign key (result_cod) references tbl_resultado (result_cod));
 
 create table tbl_comite(com_cod varchar(10) not null primary key,
 plan_cod int not null, com_descp varchar(500) not null,
@@ -273,25 +275,24 @@ primary key (plan_cod,result_cod),
 foreign key (plan_cod)references tbl_plan_de_mejoramiento(plan_cod),
 foreign key (result_cod)references tbl_resultado(result_cod));
 
-create table tbl_compromiso(compr_cod varchar(10) not null primary key,
+create table tbl_compromiso(compr_cod int identity not null primary key,
 plan_cod int not null, compr_descp varchar(500)not null,
 compr_fecha varchar(10) not null,
 foreign key (plan_cod)references tbl_plan_de_mejoramiento(plan_cod));
 
-create table tbl_act_a_desarrollar(
-act_cod varchar(10) not null primary key,
-act_nom varchar(40) not null,
-plan_cod int not null, 
-act_inicio varchar(10) not null, 
-act_fin varchar(10) not null, 
-act_centro_de_formacion varchar(50) not null,
-act_empresa varchar(50)not null, 
-act_conocimiento char(1) not null,
-act_desempeño char(1) not null, 
-act_producto char(1) not null,
-act_criterio_eval varchar(2) not null, 
-act_fecha varchar(10) not null,
-act_hora varchar(12) not null, 
-act_autenticidad varchar(2) not null,
+create table tbl_act_a_desarrollar(act_cod int identity not null primary key,
+act_nombre varchar (50) not null,
+plan_cod int not null, act_inicio varchar(10) not null, 
+act_fin varchar(10) not null, act_centro_de_formacion varchar(50) not null,
+act_empresa varchar(50)not null, act_conocimiento char(1) not null,
+act_desempeño char(1) not null, act_producto char(1) not null,
+act_criterio_eval varchar(2) not null, act_fecha varchar(10) not null,
+act_hora varchar(12) not null, act_autenticidad varchar(2) not null,
 act_calidad varchar(2), act_logro varchar(2) not null,
 foreign key (plan_cod)references tbl_plan_de_mejoramiento(plan_cod));
+
+CREATE PROCEDURE [dbo].[loginusuario](@usu_id as varchar(50),@usu_pass as varchar(50),@usu_estado as varchar(10)) 
+AS 
+BEGIN 
+    Select usu_id,usu_pass from dbo.usuario where usu_id=@usu_id and usu_pass=@usu_pass and usu_estado=@usu_estado
+END
