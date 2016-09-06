@@ -259,21 +259,13 @@ foreign key (sancion_cod) references tbl_sancion(sancion_cod),
 foreign key (plan_cod) references tbl_plan_de_mejoramiento(plan_cod)
 );
 
-create table tbl_compt_x_result(comp_cod int not null, result_cod int not null,
-primary key (comp_cod,result_cod),
-foreign key (comp_cod) references tbl_competencia (comp_cod),
-foreign key (result_cod) references tbl_resultado (result_cod));
 
 create table tbl_comite(com_cod varchar(10) not null primary key,
 plan_cod int not null, com_descp varchar(500) not null,
 com_conclusion varchar(300) not null,
 foreign key (plan_cod)references tbl_plan_de_mejoramiento(plan_cod));
 
-create table tbl_resultado_x_plan(plan_cod int not null, 
-result_cod int not null,
-primary key (plan_cod,result_cod),
-foreign key (plan_cod)references tbl_plan_de_mejoramiento(plan_cod),
-foreign key (result_cod)references tbl_resultado(result_cod));
+
 
 create table tbl_compromiso(compr_cod int identity not null primary key,
 plan_cod int not null, compr_descp varchar(500)not null,
