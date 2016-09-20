@@ -85,26 +85,37 @@
     </div>
     <div style="height: 278px">
     
-        <asp:Label ID="Label1" runat="server" Text="Instituciones"></asp:Label>
+        <asp:Label ID="Label1" runat="server" Text=""></asp:Label>
         <br />
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="inst_cod" DataSourceID="SqlDataSource4">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataKeyNames="inst_cod,ciu_cod" DataSourceID="SqlDataSource4">
             <Columns>
-                <asp:BoundField DataField="inst_cod" HeaderText="Codigo" SortExpression="inst_cod" InsertVisible="False" ReadOnly="True" />
+                <asp:BoundField DataField="inst_cod" HeaderText="Código" SortExpression="inst_cod" InsertVisible="False" ReadOnly="True" />
                 <asp:BoundField DataField="inst_nombre" HeaderText="Nombre" SortExpression="inst_nombre" />
-                <asp:TemplateField HeaderText="Ciudad" SortExpression="ciu_nom">
+                <asp:TemplateField HeaderText="Cod.ciudad" InsertVisible="False" SortExpression="ciu_cod">
                     <EditItemTemplate>
-                        <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="SqlDataSource1" DataTextField="ciu_nom" DataValueField="ciu_cod">
+                        <asp:DropDownList ID="DropDownList2" runat="server" DataSourceID="SqlDataSource1" DataTextField="ciu_nom" DataValueField="ciu_cod" SelectedValue='<%# Bind("ciu_cod") %>'>
                         </asp:DropDownList>
                         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:conexion_asp_con_clave %>" SelectCommand="SELECT [ciu_cod], [ciu_nom] FROM [tbl_ciudad]"></asp:SqlDataSource>
                     </EditItemTemplate>
                     <ItemTemplate>
-                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("ciu_nom") %>'></asp:Label>
+                        <asp:Label ID="Label1" runat="server" Text='<%# Bind("ciu_cod") %>'></asp:Label>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:CommandField SelectText="" ShowEditButton="True" ShowSelectButton="True" AccessibleHeaderText="Operación" />
+                <asp:TemplateField HeaderText="Ciudad" SortExpression="ciu_nom">
+                    <ItemTemplate>
+                        <asp:Label ID="Label2" runat="server" Text='<%# Bind("ciu_nom") %>'></asp:Label>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:CommandField ShowEditButton="True" />
             </Columns>
         </asp:GridView>
-        <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:conexion_asp_con_clave %>" SelectCommand="SELECT institucion.inst_cod, institucion.inst_nombre, institucion.ciu_cod, tbl_ciudad.ciu_nom FROM institucion INNER JOIN tbl_ciudad ON institucion.ciu_cod = tbl_ciudad.ciu_cod"  UpdateCommand="UPDATE [institucion] SET [ciu_cod] = @ciu_nom, [inst_nombre] = @inst_nombre WHERE [inst_cod] = @inst_cod"></asp:SqlDataSource>
+        <asp:SqlDataSource ID="SqlDataSource4" runat="server" ConnectionString="<%$ ConnectionStrings:conexion_asp_con_clave %>" SelectCommand="SELECT institucion.inst_cod, institucion.inst_nombre, tbl_ciudad.ciu_nom, tbl_ciudad.ciu_cod FROM institucion INNER JOIN tbl_ciudad ON institucion.ciu_cod = tbl_ciudad.ciu_cod"  UpdateCommand="UPDATE [institucion] SET [ciu_cod] = @ciu_cod, [inst_nombre] = @inst_nombre WHERE [inst_cod] = @inst_cod">
+            <UpdateParameters>
+                <asp:Parameter Name="ciu_cod" Type="Int32" />
+                <asp:Parameter Name="inst_nombre" Type="String" />
+                <asp:Parameter Name="inst_cod" Type="Int32" />
+            </UpdateParameters>
+        </asp:SqlDataSource>
         <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:conexion_asp_con_clave %>" DeleteCommand="DELETE FROM [institucion] WHERE [inst_cod] = @inst_cod" InsertCommand="INSERT INTO [institucion] ([ciu_cod], [inst_nombre]) VALUES (@ciu_cod, @inst_nombre)" SelectCommand="SELECT [ciu_cod], [inst_cod], [inst_nombre] FROM [institucion]" UpdateCommand="UPDATE [institucion] SET [ciu_cod] = @ciu_cod, [inst_nombre] = @inst_nombre WHERE [inst_cod] = @inst_cod">
             <DeleteParameters>
                 <asp:Parameter Name="inst_cod" Type="Int32" />
