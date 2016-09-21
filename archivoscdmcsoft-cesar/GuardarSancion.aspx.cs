@@ -24,10 +24,10 @@ public partial class GuardarSancion : System.Web.UI.Page
         if (datos == "Guardado Correctamente")
         {
             Response.Write("<script>alert('Guardado con Exito');</script>");
+            Response.Redirect("GuardarSancion.aspx");
         }
         else
         {
-            Response.Write(datos);
             Response.Write("<script>alert('Error Al Guardar');</script>");
         }
     }
