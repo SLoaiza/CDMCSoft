@@ -24,7 +24,7 @@
         padding: 10px;
         Background: #ffffff;
         width: 500px;
-        height: 500px;
+        height: 400px;
     }
     .HyperLink1{
         margin-left: 90%;
