@@ -202,12 +202,14 @@
 
         }
         function seguir2() {
-            var regional = document.getElementById('dpRegional').value;
-            var centro = document.getElementById('dpCentro').value;
-            var tipoplan = document.getElementById('dpTipoplan').value;
-            var programa = document.getElementById('dpPrograma').value;
-            var ficha = document.getElementById('NfichaPlan').value;
-            var etapa = document.getElementById('dpEtapa').value;
+            var nombres = document.getElementById('txtNombresplan').value;
+            var documento = document.getElementById('txtDocumentoPlanusu').value;
+            var fase = document.getElementById('txtFaseplan').value;
+            var proyecto = document.getElementById('txtproyPlan').value;
+            var codproy = document.getElementById('codproyplan').value;
+            var juicio = document.getElementById('dpjuicioPlan').value;
+            var act = document.getElementById('taActv_des').value;
+            var obs = document.getElementById('taObserv').value;
 
             if (regional == null || regional == "" || centro == null || centro == "" || tipoplan == null || tipoplan == "" || programa == null || programa == "" || ficha == null || ficha == "" || etapa == null || etapa == "") {
                 swal("Atencion", "faltan algunos campos por llenar", "info");
