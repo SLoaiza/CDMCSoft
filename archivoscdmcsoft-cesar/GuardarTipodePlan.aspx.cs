@@ -21,23 +21,13 @@ public partial class GuardarTipodePlan : System.Web.UI.Page
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
-        
-    }
-    protected void Button1_Click1(object sender, EventArgs e)
-    {
-
-        if (TextBox2.Text==""){
-            Response.Write("<script>alert('Por favor llenar este campo');</script>");
-            return;
-
-        }
-
         String nombre = TextBox2.Text;
 
         string datos = plan.Guardartipoplan(nombre);
         if (datos == "Guardado Correctamente")
         {
             Response.Write("<script>alert('Guardado con Exito');</script>");
+            Response.Redirect("GuardarTipoPlan.aspx");
         }
         else
         {
