@@ -17,18 +17,17 @@ public partial class GuardarCiudad : System.Web.UI.Page
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
-        String codigo = TextBox1.Text;
-        String descripcion = TextBox2.Text;
-        String departamento = DropDownList1.SelectedItem.Value;
+        String descripcion = TextBox1.Text;
+        String departamento = DropDownList3.SelectedItem.Value;
 
-        string datos = Ciudad.Guardarciudad(codigo, descripcion, departamento);
+        string datos = Ciudad.Guardarciudad(descripcion, departamento);
         if (datos == "Guardado Correctamente")
         {
             Response.Write("<script>alert('Guardado con Exito');</script>");
+            Response.Redirect("GuardarCiudad.aspx");
         }
         else
         {
-            Response.Write(datos);
             Response.Write("<script>alert('Error Al Guardar');</script>");
         }
     }

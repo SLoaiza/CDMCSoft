@@ -18,13 +18,13 @@ public class GestionarCiudad
 		//
 	}
 
-    public String Guardarciudad(String codigo, String descripcion, String departamento)
+    public String Guardarciudad(String descripcion, String departamento)
     {
         string mensaje = "Guardado Correctamente";
         try
         {
             var conex = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion_asp_sin_clave"].ConnectionString);
-            var insertar = "insert into tbl_ciudad values('" + codigo + "','" + descripcion + "','" + departamento + "')";
+            var insertar = "insert into tbl_ciudad values('" + descripcion + "','" + departamento + "')";
             var comando = new SqlCommand(insertar, conex);
             conex.Open();
             int rstl = comando.ExecuteNonQuery();
