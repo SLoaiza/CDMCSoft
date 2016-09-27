@@ -17,7 +17,7 @@
             width: 300px;
         }
         </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css" />
     <link href="https://cdn.jsdelivr.net/sweetalert2/5.0.7/sweetalert2.min.css" rel="stylesheet" />
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
@@ -42,7 +42,7 @@
                 <div class="col m1">
                     Acta N°
                     <br />
-                    <asp:Label ID="actanum" runat="server" Text="" value="1">1</asp:Label>
+                    <asp:Label ID="actanum" runat="server" Text="" >1</asp:Label>
                 </div>
             </div>
             <div class="row">
@@ -163,12 +163,12 @@
                  <div class="col m6">
                     <asp:Label ID="Label8" runat="server" Text="Resultado"></asp:Label>
                     <br />
-                    <textarea id="taResultadoPlan" cols="20" rows="2" runat="server" maxlength="300" style="width:500px; max-width:500px;max-height:300px;"></textarea>
+                    <textarea id="taResultadoPlan" cols="20" rows="2" runat="server" maxlength="300" style="max-width:500px;max-height:300px;"></textarea>
                 </div>
                 <div class="col m6">
                     <asp:Label ID="Label9" runat="server" Text="Competencias"></asp:Label>
                     <br />
-                    <textarea id="taCompetenciaPlan" cols="20" rows="2" runat="server" maxlength="300" style="width:500px; max-width:500px;max-height:300px;"></textarea>
+                    <textarea id="taCompetenciaPlan" cols="20" rows="2" runat="server" maxlength="300" style="max-width:500px;max-height:300px;"></textarea>
                 </div>
             </div>
         </div>
@@ -211,16 +211,18 @@
             var act = document.getElementById('taActv_des').value;
             var obs = document.getElementById('taObserv').value;
 
-            if (regional == null || regional == "" || centro == null || centro == "" || tipoplan == null || tipoplan == "" || programa == null || programa == "" || ficha == null || ficha == "" || etapa == null || etapa == "") {
+            if (nombres == null || nombres == "" || documento == null || documento == "" || fase == null || fase == "" || proyecto == null || proyecto == "" || codproy == null || codproy == "" || juicio == null || juicio == "" || act == null || act == "" || obs == null || obs == "") {
                 swal("Atencion", "faltan algunos campos por llenar", "info");
             } else {
-                swal("Listo", "Seccion 2 del formulario", "info");
+                swal("Listo", "Seccion 3 del formulario", "info");
                 document.getElementById('Parte1').style.display = "none";
-                document.getElementById('Parte2').style.display = "block";
+                document.getElementById('Parte2').style.display = "none";
+                document.getElementById('Parte3').style.display = "block";
             }
 
         }
 
+        
     </script>
 </body>
 </html>

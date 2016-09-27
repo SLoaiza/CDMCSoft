@@ -18,13 +18,13 @@ public class GestionarResultado
 		//
 	}
 
-    public String GuardarResultado(String descripcion)
+    public String GuardarResultado(String descripcion, double cplan)
     {
         string mensaje = "Guardado Correctamente";
         try
         {
             var conex = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion_asp_sin_clave"].ConnectionString);
-            var insertar = "insert into tbl_resultado values('" + descripcion + "')";
+            var insertar = "insert into tbl_resultado values(" + cplan + ",'" + descripcion + "')";
             var comando = new SqlCommand(insertar, conex);
             conex.Open();
             int rstl = comando.ExecuteNonQuery();

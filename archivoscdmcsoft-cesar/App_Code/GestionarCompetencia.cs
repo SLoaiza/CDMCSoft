@@ -18,13 +18,13 @@ public class GestionarCompetencia
 		//
 	}
 
-    public String GuardarCompetencia(String codigo, String descripcion)
+    public String GuardarCompetencia(String descripcion, double cplan)
     {
         string mensaje = "Guardado Correctamente";
         try
         {
             var conex = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion_asp_sin_clave"].ConnectionString);
-            var insertar = "insert into tbl_competencia values('" + codigo + "','" + descripcion + "')";
+            var insertar = "insert into tbl_competencia values(" + cplan + ",'" + descripcion + "')";
             var comando = new SqlCommand(insertar, conex);
             conex.Open();
             int rstl = comando.ExecuteNonQuery();
