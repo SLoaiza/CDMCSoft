@@ -93,7 +93,7 @@
         </div>
 
 
-        <div class="row" id="Parte2" style="display:none;">
+        <div class="row" id="Parte2" >
             <div class="row">
                 <div class="col m4">
                     <asp:Label ID="Label12" runat="server" Text="Nombres y Apellidos"></asp:Label>
@@ -146,7 +146,7 @@
         </div>
 
 
-        <div class="row" id="Parte3" style="display:none;">
+        <div class="row" id="Parte3">
             <div class="row">
                 <div class="col m3">
                     <asp:Label ID="Label6" runat="server" Text="Instructor"></asp:Label>
@@ -175,6 +175,11 @@
         <div class="row" style="display:none;">
             <asp:Button ID="continuar" Text="Continuar" runat="server" Height="41px" Width="133px" OnClick="continuar_Click" />
             <a href="Default.aspx">Atras</a>
+        </div>
+        <div class="row">
+            <asp:Label ID="Label14" runat="server" Text="Label">Sancion</asp:Label>
+            <br />
+            <asp:TextBox ID="txtsancion" runat="server" TextMode="MultiLine"></asp:TextBox>
         </div>
     </form>
     </div>
