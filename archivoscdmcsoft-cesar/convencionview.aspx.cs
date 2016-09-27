@@ -10,7 +10,10 @@ public partial class _Default : System.Web.UI.Page
     convencion clase = new convencion();
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        //if (Session["usuario"] == null)
+        //{
+        //    Response.Redirect("Default.aspx");
+        //}
     }
     protected void Button1_Click(object sender, EventArgs e)
     {

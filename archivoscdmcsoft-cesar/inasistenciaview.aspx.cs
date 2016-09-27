@@ -10,7 +10,10 @@ public partial class _Default : System.Web.UI.Page
     inasistencias clase = new inasistencias();
     protected void Page_Load(object sender, EventArgs e)
     {
-        
+        //if (Session["usuario"] == null)
+        //{
+        //    Response.Redirect("Default.aspx");
+        //}
     }
    
     protected void Calendar1_SelectionChanged(object sender, EventArgs e)
