@@ -1,4 +1,5 @@
-﻿use cdmcsoft;
+﻿create database cdmcsoft;
+use cdmcsoft;
 CREATE TABLE [dbo].[ambiente](
 	[ambi_cod] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	[ambi_nro] [int] NOT NULL
@@ -58,8 +59,9 @@ CREATE TABLE [dbo].[rol](
 	[rol_nom] [varchar](20) NOT NULL
 )
 
-create table tbl_departamento(dept_cod int identity not null primary key, dept_nom varchar(30) not null);
-create table tbl_sancion(sancion_cod int identity not null primary key, sancion_nom varchar(30) not null, sancion_descp varchar(500) not null);
+create table tbl_departamento(
+	dept_cod int identity not null primary key, 
+	dept_nom varchar(30) not null);
 
 
 CREATE TABLE [dbo].[tipo_inventario](
@@ -76,6 +78,7 @@ ciu_cod int identity not null primary key,
 ciu_nom varchar(30) not null,
 dept_cod int not null, 
 foreign key (dept_cod) references tbl_departamento (dept_cod));
+
 
 CREATE TABLE [dbo].[centro](
 	[centro_cod] [varchar](20) NOT NULL,
@@ -216,7 +219,7 @@ CREATE TABLE [dbo].[incidencia](
 )
 
 create table tbl_plan_de_mejoramiento(
-plan_cod int identity not null primary key,
+plan_cod bigint not null primary key,
 usu_cod varchar(20) not null,
 tipo_cod int not null,
 plan_num varchar(10) not null, 
@@ -239,31 +242,38 @@ plan_instructor_cod varchar(20) not null,
 foreign key(usu_cod)references usuario (usu_cod),
 foreign key(tipo_cod)references tbl_tipo_plan (tipo_cod));
 
+create table tbl_sancion(
+	sancion_cod int identity not null primary key, 
+	plan_cod bigint not null,
+	sancion_nom varchar(30) not null, 
+	sancion_descp varchar(500) not null,
+	foreign key (plan_cod) references tbl_plan_de_mejoramiento (plan_cod));
+
 create table tbl_competencia(
 comp_cod int identity not null primary key,
-plan_cod int not null, 
+plan_cod bigint not null, 
 comp_descp varchar(500) not null,
 foreign key (plan_cod) references tbl_plan_de_mejoramiento (plan_cod));
 
 create table tbl_resultado(
 result_cod int identity not null primary key, 
-plan_cod int not null,
+plan_cod bigint not null,
 result_descp varchar(500) not null,
 foreign key (plan_cod) references tbl_plan_de_mejoramiento (plan_cod));
 
 create table tbl_comite(com_cod int identity not null primary key,
-plan_cod int not null, com_descp varchar(500) not null,
+plan_cod bigint not null, com_descp varchar(500) not null,
 com_conclusion varchar(300) not null,
 foreign key (plan_cod)references tbl_plan_de_mejoramiento(plan_cod));
 
 create table tbl_compromiso(compr_cod int identity not null primary key,
-plan_cod int not null, compr_descp varchar(500)not null,
+plan_cod bigint not null, compr_descp varchar(500)not null,
 compr_fecha varchar(10) not null,
 foreign key (plan_cod)references tbl_plan_de_mejoramiento(plan_cod));
 
 create table tbl_act_a_desarrollar(act_cod int identity not null primary key,
 act_nombre varchar (50) not null,
-plan_cod int not null, act_inicio varchar(10) not null, 
+plan_cod bigint not null, act_inicio varchar(10) not null, 
 act_fin varchar(10) not null, act_centro_de_formacion varchar(50) not null,
 act_empresa varchar(50)not null, act_conocimiento char(1) not null,
 act_desempeño char(1) not null, act_producto char(1) not null,
