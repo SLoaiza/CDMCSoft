@@ -16,7 +16,7 @@ public partial class GuardarDepartamento : System.Web.UI.Page
     }
     protected void Button1_Click(object sender, EventArgs e)
     {
-
+        String descripcion = TextBox1.Text;
         string datos = Departamento.GuardarDepartamento(descripcion);
         if (datos == "Guardado Correctamente")
         {

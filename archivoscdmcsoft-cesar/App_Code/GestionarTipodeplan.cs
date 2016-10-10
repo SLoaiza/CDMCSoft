@@ -23,7 +23,7 @@ public class GestionarTipodeplan
         try
         {
             var conex = new SqlConnection(ConfigurationManager.ConnectionStrings["conexion_asp_sin_clave"].ConnectionString);
-            var insertar = "insert into tbl_tipo_plan values('" + nombre + "')";
+            var insertar = "insert into tbl_tipo_plan (tipo_nom) values('" + nombre + "')";
             var comando = new SqlCommand(insertar, conex);
             conex.Open();
             int rstl = comando.ExecuteNonQuery();

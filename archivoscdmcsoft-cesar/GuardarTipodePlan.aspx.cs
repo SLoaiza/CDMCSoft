@@ -27,7 +27,7 @@ public partial class GuardarTipodePlan : System.Web.UI.Page
         if (datos == "Guardado Correctamente")
         {
             Response.Write("<script>alert('Guardado con Exito');</script>");
-            Response.Redirect("GuardarTipoPlan.aspx");
+            Response.Redirect("GuardarTipodePlan.aspx");
         }
         else
         {

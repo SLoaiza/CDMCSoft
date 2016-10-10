@@ -172,7 +172,7 @@
                 </div>
             </div>
         </div>
-        <div class="row" style="display:none;">
+        <div class="row" >
             <asp:Button ID="continuar" Text="Continuar" runat="server" Height="41px" Width="133px" OnClick="continuar_Click" />
             <a href="Default.aspx">Atras</a>
         </div>
